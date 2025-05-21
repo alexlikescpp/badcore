@@ -1,4 +1,5 @@
 #include <sys/stat.h>
+#include <string>
 
 int main(int c, char** v) {
     if (c < 3 || std::string(v[1]) != "+x") return 1;
