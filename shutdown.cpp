@@ -1,12 +1,11 @@
-#include <iostream>
 #include <unistd.h>
 #include <sys/reboot.h>
-
-int main() {
+#include <cstring>
+int main(int c,char**v){
+    int cmd=RB_POWER_OFF;
+    if(c>1)
+        if(!strcmp(v[1],"halt"))cmd=RB_HALT_SYSTEM;
+        else if(!strcmp(v[1],"reboot"))cmd=RB_AUTOBOOT;
     sync();
-    if (reboot(RB_POWER_OFF) == -1) {
-        perror("Failed to shutdown");
-        return 1;
-    }
-    return 0;
+    reboot(cmd);
 }
